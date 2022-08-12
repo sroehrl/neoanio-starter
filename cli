@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use Config\Bootstrap;
+use Neoan\Cli\Application;
+use Neoan\NeoanApp;
+
+
+require_once 'vendor/autoload.php';
+
+$app = new NeoanApp(__DIR__ . '/app', __DIR__, __DIR__);
+$app->cliPath = __DIR__;
+new Bootstrap($app);
+$console = new Application($app);
+$console->add(new \App\Route\CliRouteCommandList($app));
+$console->run();
+

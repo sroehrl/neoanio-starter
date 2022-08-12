@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="https://gaudiamus-css.github.io/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+          rel="stylesheet">
+    <title>{{title}}</title>
+
+</head>
+<body>
+<header class="p-3 bg-primary-dark-50 b-b-2 b-white raise-1-accent">
+    <fire-flies></fire-flies>
+    <div class="container d-flex">
+        <p class="f-1">
+            <a class="text-white text-lg text-decoration-none" href="{{webPath}}">YOUR LOGO</a>
+        </p>
+        <div class="place-y-center position-relative md:d-flex d-hidden " id="menu">
+            <a href="/setup" class="menu-link" play-on-hover>Setup</a>
+            <a href="/work" class="menu-link" play-on-hover>Work with it</a>
+            <div class="menu-link dropdown" play-on-click>
+                <div class="title">Work with it</div>
+                <ul class="hidden">
+                    <li><a href="https://test.de" class="dropdown-link" play-on-hover>Drop a</a></li>
+                    <li><a href="https://test.de" class="dropdown-link" play-on-hover>Drop b</a></li>
+                </ul>
+
+
+            </div>
+
+            <a href="/login" class="menu-link button-teal p-x-3" play-on-hover>Login</a>
+        </div>
+        <div class="place-y-center position-relative md:d-hidden text-white font-xl">
+            <button class="icon-button-white" data-toggle data-source="menu" data-target="mobile-menu"><span
+                    class="material-icons-outlined">drag_indicator</span></button>
+        </div>
+
+    </div>
+
+</header>
+<div class="backdrop bg-black-75 position-absolute w-100p h-100p" style="height: calc(100% - 122px)"  id="mobile-menu">
+    <section class="position-absolute card grid w-50p" style="right:10px; z-index: 10;" ></section>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    const $ = search => {
+        const elements = document.querySelectorAll(search);
+        switch(elements.length){
+            case 0: return null;
+            case 1:
+                elements[0].forEach = (callback) => callback(elements[0],0)
+                return elements[0];
+            default: return Array.from(elements);
+        }
+    }
+    function reloadPage(){
+        window.location.reload();
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+
+        const forms = $('form');
+        if(forms){
+
+            forms.forEach(formElement => {
+                console.log({formElement})
+                formElement.addEventListener('submit', formSubmit)
+            })
+        }
+
+        function formSubmit(ev){
+            ev.preventDefault();
+            const data = extractData(ev.target.elements)
+            call(ev.target.method, ev.target.action, data)
+                .then(res => {
+                    if(ev.target.attributes.then.value){
+                        window[ev.target.attributes.then.value](res)
+                    }
+                })
+                .catch(error => {
+                    if(ev.target.attributes.catch.value){
+                        window[ev.target.attributes.catch.value](error)
+                    } else {
+                        alert(error.message)
+                    }
+                })
+
+        }
+        function extractData(elementCollection){
+            const data = {};
+            Array.from(elementCollection).forEach(item => {
+                if(item.name){
+                    data[item.name] = item.value;
+                }
+            })
+            return data;
+        }
+        async function call(method, action, payload = {}){
+            const headers = {'Authorization': `Bearer ${sessionStorage.token}`}
+            payload = {...payload, ...{headers}}
+            try{
+                const {data} = await axios[method](action, payload, {headers})
+                return data;
+            } catch (e) {
+                throw new Error(e.message)
+            }
+        }
+        /// n-links
+        const links = $('*[n-link]');
+        if(links){
+            links.forEach(element => {
+                element.addEventListener('click', () => {
+                    location.href = '{{webPath}}' + element.attributes['n-link'].value;
+                })
+            })
+        }
+
+
+    })
+
+</script>
+<script type="module">
+    import './components/FireFlies.js'
+    import './components/toggle.js'
+    import './components/hoverSound.js'
+</script>
+{{main}}
+</body>
+</html>

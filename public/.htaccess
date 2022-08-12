@@ -1,0 +1,26 @@
+# Options -Multiviews
+# Options +FollowSymLinks
+RewriteEngine On
+
+RewriteBase /neoan.io/public/
+
+
+# turn off www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# force ssl
+#RewriteCond %{HTTPS} off
+#RewriteCond %{REQUEST_URI} !/img/
+#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Apache-fix: get Authorization header
+RewriteEngine On
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteRule ^api.(.*)$    _neoan/api/index.php    [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_URI} !lib\/ui\.
+RewriteCond %{REQUEST_FILENAME} !phpmyadmin
+RewriteRule ^(.*)$  index.php/$1&%{QUERY_STRING}    [L,NC]

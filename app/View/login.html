@@ -1,0 +1,53 @@
+<div class="m-y-5">
+    <div class="container">
+        <div class="grid">
+            <div class="card place-x-center p-5">
+                <form method="post" action="api/auth/login" then="login" catch="showError" n-if="!userId" >
+                    <h2 class="text-accent">Login</h2>
+                    <input type="hidden" name="web" value="true">
+                    <div class="grid m-y-3 grid-6-6">
+                        <label for="userName">Username</label>
+                        <input type="text" id="userName" name="userName">
+                    </div>
+                    <div class="grid m-y-3 grid-6-6">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password">
+                    </div>
+                    <div class="grid m-y-3">
+                        <button type="submit" class="button-accent place-x-end">Login</button>
+                    </div>
+                    <div class="card hidden" id="login-error">
+                        <div class="p-3 bg-warning-50">
+                            Your username or password is incorrect!
+                        </div>
+
+                    </div>
+                </form>
+                <div n-if="userId">
+                    <h3>Stateful</h3>
+                    <p>Logged in with user-id: {{userId}}</p>
+                    <p id="token"></p>
+                    <button id="logout-btn" class="button-warning">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    function login(res){
+        sessionStorage.token = res.token;
+        reloadPage()
+    }
+    function showError(){
+        $('#login-error').classList.add('appear')
+    }
+    $('#logout-btn').addEventListener('click', () => {
+
+        axios.delete('/api/auth/logout').then(()=> {
+            sessionStorage.clear();
+            reloadPage()
+        })
+    })
+    $('#token').innerText = "Token: " + sessionStorage.token.substring(0,7) + '...'
+</script>

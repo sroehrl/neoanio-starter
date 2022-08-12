@@ -1,0 +1,130 @@
+<style>
+  .space-it{
+    margin-top: 400px;
+  }
+</style>
+<div class="container m-y-5">
+  <div class="d-flex" style="justify-content: space-between">
+    <a href="#cli" class="button-teal">Useful CLI Commands</a>
+    <a href="#styling" class="button-teal">About Styling</a>
+    <a href="#auth" class="button-teal">About Authentication</a>
+    <a href="#ssr" class="button-teal">About SSR</a>
+  </div>
+  <div class="card space-it" id="cli">
+    <div class="p-3 bg-black-50">Useful CLI Commands</div>
+    <p class="p-x-3">
+      The CLI is based on Symfony Console.
+    </p>
+    <div class="grid-6-6 p-2">
+      <p class="b-b-2 b-white p-2 text-center font-strong m-r-1">Command</p>
+      <p class="b-b-2 b-white p-2 text-center font-strong m-l-1">Description</p>
+    </div>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>php cli list</code></div>
+      <div class="m-x-3">Lists all available commands</div>
+    </div>
+    <hr>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>php cli list:routes</code></div>
+      <div class="m-x-3">Lists all registered routes</div>
+    </div>
+    <hr>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>php cli create:controller [name]</code></div>
+      <div class="m-x-3">Creates a Routable class based on qualified name (example: App\Controller\MyController)</div>
+    </div>
+    <hr>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>php cli create:controller [name]</code></div>
+      <div class="m-x-3">Creates a Routable class based on qualified name (example: App\Controller\MyController)</div>
+    </div>
+    <hr>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>php cli create:model [name]</code></div>
+      <div class="m-x-3">Creates a model based on qualified name (example: App\Model\MyModel)</div>
+    </div>
+    <hr>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>php cli migrate:model [dialect] [name]</code></div>
+      <div class="m-x-3">Synchronizes a model with your database based on dialect (example: sqlite) and qualified name (example: App\Model\MyModel)</div>
+    </div>
+  </div>
+  <div class="card space-it" id="styling">
+    <div class="p-3 bg-black-50">About Styling</div>
+    <p class="p-3">
+      This starter project ships with <a class="text-decoration-none text-accent hover:text-teal" href="https://gaudiamus-css.github.io/glass/">glass</a>,
+      a <a class="text-decoration-none text-accent hover:text-teal" href="https://gaudiamus-css.github.io/">Gaudiamus-CSS</a>-based design.
+      <br>Ultimately, it serves as a demonstration only and can be completely replaced. If you want to play around with it, though,
+      feel free to explore the root-folder <code>scss</code>. For your convenience the file <code>compile.js</code> is setup to compile
+      the scss files into your public css-directory. <br>
+      NOTE: the framework requires dart-sass, making compilation a little slow.
+    </p>
+    <p class="p-3">
+      To use it: <br>
+      <code>yarn install</code> or <code>npm install</code> <br>
+
+    </p>
+    <p class="p-3">
+      Then: <br>
+      <code>node compile.js</code>
+    </p>
+  </div>
+  <div class="card space-it" id="auth">
+    <div class="p-3 bg-black-50">About Authentication</div>
+    <p class="p-3">
+      In all examples in <a class="text-decoration-none text-accent hover:text-teal" href="/setup">setup</a> API-examples
+      were used. The login is set up to register a stateful (Session, based on
+      <a class="text-decoration-none text-accent hover:text-teal" href="https://github.com/josantonius/php-session">
+        josantonius/php-session
+      </a>) and a stateless (JWT, based on
+      <a class="text-decoration-none text-accent hover:text-teal" href="https://github.com/sroehrl/neoan3-stateless">
+        neoan3-apps/stateless
+      </a>) authentication. Depending on your needs, the following middleware is available
+    </p>
+    <div class="grid-6-6 p-2">
+      <p class="b-b-2 b-white p-2 text-center font-strong m-r-1">Middleware</p>
+      <p class="b-b-2 b-white p-2 text-center font-strong m-l-1">Description</p>
+    </div>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>App\Middleware\NeedsAuth</code></div>
+      <div class="m-x-3">
+        Requires a valid stateless authentication as a bearer-token in the Authorization header.
+        Attaches the decoded JWT to the $provided-array as "auth" on success and throws a 401 (unauthorized) error
+        when authorization isn't successful.
+      </div>
+    </div>
+    <hr>
+    <div class="grid-6-6 p-2">
+      <div class="m-x-3"><code>App\Middleware\NeedsSession</code></div>
+      <div class="m-x-3">
+        Requires a valid userId in the session.
+        Attaches the valid user's id to the $provided-array as "auth" on success and throws the custom Error <code>Reauthenticate</code>
+        which redirects the user to the login page (make changes as you need).
+      </div>
+    </div>
+  </div>
+  <div class="card space-it" id="ssr">
+    <div class="p-3 bg-black-50">About SSR apps</div>
+    <p class="p-3">
+      As mentioned before, other then resolving visitable endpoints, calls are made as API-calls instead of e.g. making post-calls to a view.
+      In order to do this as convenient as possible, this project ships with some native javascript code in the skeleton.
+      It's purpose is to enable an almost HTML-only way of sending requests to the API. Let's have a look:
+    </p>
+    <div class="bg-black-50 p-3">
+      &lt;form method="get" action="Sapi/auth/me" then="myMethod"&gt; <br>
+      &nbsp;&nbsp;&lt;button type="submit"&gt;Am I logged in?&lt;/button&gt; <br>
+      &lt;/form&gt;<br><br>
+      &lt;script&gt;<br>
+      &nbsp;&nbsp;function myMethod(result){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;console.log(result);<br>
+      &nbsp;&nbsp;}<br>
+      &lt;/script&gt;
+    </div>
+    <p class="p-3">
+      What happens here? Javascript intercepts the native GET-submission and transforms it into an axios-call using your
+      JWT token (if logged in). In order to remain in control of interactivity, we added the attribute <code>then</code>
+      to enable execution of custom javascript code (or one of the included functions like "reloadPage") as well as <code>catch</code>
+      to react on errors.
+    </p>
+  </div>
+</div>

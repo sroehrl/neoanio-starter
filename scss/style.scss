@@ -1,0 +1,27 @@
+@use "../node_modules/gaudiamus-css/scss/components/operations" as ops;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+html,body{
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  font-size: medium;
+}
+body{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  background-image:
+    url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1"),
+    radial-gradient(circle, rgba(144,144,144,1) 0%, rgba(0,0,0,1) 50%);
+  @extend .text-white;
+}
+
+@import "variables";
+@import "../node_modules/gaudiamus-css/scss";
+
+@import "menu";
+@import "card";
+@import "button";
+@import "form";
+@import "effects";
+@import "elements";

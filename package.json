@@ -1,0 +1,12 @@
+{
+  "name": "starter-project",
+  "version": "1.0.0",
+  "main": "public/main.js",
+  "author": "Stefan Roehrl",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "gaudiamus-css": "^1.2.7",
+    "sass": "^1.54.4"
+  }
+}

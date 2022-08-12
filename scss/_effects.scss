@@ -1,0 +1,53 @@
+.polygon{
+  @extend .raise-1-accent;
+  position: relative;
+  -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  background:linear-gradient(grey,lightgrey);
+  transition:transform 0.2s;
+}
+.polygon img{
+  width: 100%;
+
+}
+.polygon:before{
+  content:'';
+  position:absolute;
+  opacity:0.5;
+  width:350px;
+  height:70px;
+  background:white;
+  top:-60px;
+  left:-10px;
+  z-index:1;
+  transform:rotate(45deg);
+  transition:transform 0.5s;
+}
+.polygon:hover:before{
+  transform: translate(-100px,400%) rotate(45deg);
+  transition:transform 0.5s;
+}
+.hidden{
+  opacity: 0;
+}
+.appear{
+  opacity: 1;
+  transition: opacity ease-in .5s;
+}
+// scrollbar
+@media (min-width: map-get($breakpoint-map,"md")){
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: $accentColor;
+    backdrop-filter: blur($blur-ratio);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: darken($accentColor, 25%);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: darken($accentColor, 50%);;
+  }
+}

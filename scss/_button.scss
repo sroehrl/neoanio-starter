@@ -1,0 +1,50 @@
+@use "functionsMixins" as func;
+.button{
+  @extend .b-1, .cursor-pointer, .p-x-3, .p-y-1, .font-strong, .m-x-2, .position-relative, .text-center;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur($blur-ratio);
+  text-decoration: none;
+  appearance: auto;
+}
+.button::before{
+  @extend .position-absolute;
+  content: "";
+  width: 150px;
+  height: 30px;
+  background-color: $white;
+  opacity: .7;
+  top:0;
+  left:0;
+  transform: translate(-100%, 45%) rotateZ(45deg);
+  transition: transform 0.4s;
+}
+.button:hover::before{
+  transform: translate(100%, -30px) rotateZ(30deg);
+}
+.icon-button{
+  @extend .button, .b-round;
+  padding: 0 !important;
+  width: 39px;
+  height:39px;
+}
+[class^='icon-button-']:first-child{
+  margin: auto auto;
+}
+[class^='button-']{
+  @extend .button;
+}
+@each $name, $color in $color-map{
+  $textColor: func.contrast($color);
+  $hoverColor: func.contrast($color);
+  .button-#{$name}{
+
+    @extend .text-#{$name}, .b-#{$name}, .hover\:bg-white-25, .hover\:text-#{"" + $hoverColor}, .hover\:raise-1-accent;
+  }
+  .icon-button-#{$name}{
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur($blur-ratio);
+    @extend .icon-button, .text-#{$name}, .b-#{$name}, .hover\:bg-white-25, .hover\:text-#{"" + $hoverColor}, .hover\:raise-1-accent;
+  }
+}
+

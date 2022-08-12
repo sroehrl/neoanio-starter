@@ -1,0 +1,45 @@
+.menu-link{
+  @extend .position-relative, .hover\:text-accent,
+  .b-0, .bg-transparent, .font-md, .text-white, .cursor-pointer,
+  .m-l-3, .text-center,
+  .text-decoration-none;
+}
+.menu-link:hover::before{
+  left: calc(50% - 8px);
+  top: 90%;
+  content: '○';
+  transition: all 200ms;
+}
+.menu-link::before{
+  left:100%;
+  top:0;
+  position: absolute;
+  content: '';
+}
+.menu-link.dropdown{
+  &:before{
+    position: absolute;
+    top: 70%;
+    left: calc(50% - 8px);
+    content: "arrow_drop_down";
+    font-family: "Material Icons Outlined";
+  }
+
+  ul{
+    @extend .raise-1-accent, .p-3, .position-absolute;
+    z-index: 9;
+    list-style: none;
+    width: 80%;
+    left: 5%;
+    background: rgba(0,0,0,.9);
+    display: none;
+    li{
+      @extend .m-y-2;
+    }
+  }
+  a{
+    @extend .d-block, .text-decoration-none, .text-accent, .hover\:text-teal;
+
+  }
+
+}
