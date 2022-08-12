@@ -1,6 +1,6 @@
 const files = [
-    "/components/start-13691.mp3",
-    "/components/plasmablaster-37114.mp3",
+    "/assets/start-13691.mp3",
+    "/assets/plasmablaster-37114.mp3",
 ];
 
 const players = {
