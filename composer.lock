@@ -127,16 +127,16 @@
         },
         {
             "name": "josantonius/session",
-            "version": "v2.0.6",
+            "version": "v2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/josantonius/php-session.git",
-                "reference": "1b5980c2ae260e2bd4aaf41db67f854bb5707313"
+                "reference": "a324091943a8322f8eb0e772b2aef677506bb399"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/josantonius/php-session/zipball/1b5980c2ae260e2bd4aaf41db67f854bb5707313",
-                "reference": "1b5980c2ae260e2bd4aaf41db67f854bb5707313",
+                "url": "https://api.github.com/repos/josantonius/php-session/zipball/a324091943a8322f8eb0e772b2aef677506bb399",
+                "reference": "a324091943a8322f8eb0e772b2aef677506bb399",
                 "shasum": ""
             },
             "require": {
@@ -186,7 +186,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-07T22:09:59+00:00"
+            "time": "2022-08-11T16:21:37+00:00"
         },
         {
             "name": "neoan.io/core",
@@ -194,12 +194,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sroehrl/neoan.io-lenkrad-core.git",
-                "reference": "007e0bd4bde899354dc7c3e1255d467773b927a7"
+                "reference": "16a7ce173ff3fd38fbd072b1a7694308a5f56b7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/007e0bd4bde899354dc7c3e1255d467773b927a7",
-                "reference": "007e0bd4bde899354dc7c3e1255d467773b927a7",
+                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/16a7ce173ff3fd38fbd072b1a7694308a5f56b7f",
+                "reference": "16a7ce173ff3fd38fbd072b1a7694308a5f56b7f",
                 "shasum": ""
             },
             "require": {
@@ -212,6 +212,7 @@
                 "vlucas/phpdotenv": "^5.4"
             },
             "require-dev": {
+                "ext-simplexml": "*",
                 "phpunit/phpunit": "9.5"
             },
             "default-branch": true,
@@ -236,7 +237,7 @@
                 "issues": "https://github.com/sroehrl/neoan.io-lenkrad-core/issues",
                 "source": "https://github.com/sroehrl/neoan.io-lenkrad-core/tree/master"
             },
-            "time": "2022-08-10T02:30:52+00:00"
+            "time": "2022-08-12T21:45:24+00:00"
         },
         {
             "name": "neoan.io/legacy-db-adapter",
