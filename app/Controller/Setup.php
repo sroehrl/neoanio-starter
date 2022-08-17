@@ -22,7 +22,7 @@ class Setup implements Routable
             $time = false;
         }
         try{
-            $users = User::retrieve([]);
+            $users = Database::raw("SELECT * FROM User");
         } catch (\Exception $e){
             $users = false;
         }
@@ -31,7 +31,7 @@ class Setup implements Routable
             'dbAdapter' => $setup['database']['driver']['adapter'],
             'dialect' => $setup['database']['driver']['credentials'],
             'databaseConnected' => $time,
-            'users' => $users ? $users->toArray() : $users
+            'migrated' => is_array($users)
         ];
     }
 }
