@@ -14,7 +14,8 @@ return [
             'placement' => Env::get('HTML_SKELETON_PLACEMENT','main'),
             'inject' => [
                 'title' => Store::dynamic('appTitle'),
-                'webPath' => Env::get('WEB_PATH', 'http://127.0.0.1:8080')
+                'webPath' => Env::get('WEB_PATH', 'http://127.0.0.1:8080'),
+                'isLoggedIn' => Store::dynamic('isLoggedIn')
             ]
         ]
     ],

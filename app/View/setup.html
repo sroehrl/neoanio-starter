@@ -5,7 +5,7 @@
             <div class="p-3">
                 <h2>Basic variables</h2>
                 <label>
-                    <input disabled type="checkbox" {{isChecked(hasEnv)}}>
+                    <input disabled type="checkbox" n-checked="hasEnv">
                     .env -file present
                 </label>
 
@@ -34,8 +34,8 @@
             <div class="p-3">
                 <h2>Database</h2>
                 <label>
-                    <input disabled type="checkbox" {{isChecked(databaseConnected)}}>
-                    Database connected {{isChecked(databaseConnected)}}
+                    <input disabled type="checkbox" n-checked="databaseConnected">
+                    Database connected
                 </label>
                 <p class="font-sm">{{dbAdapter}}</p>
             </div>
@@ -59,7 +59,7 @@
             <div class="p-3">
                 <h2>Migrations</h2>
                 <label>
-                    <input disabled type="checkbox" {{isChecked(users)}}>
+                    <input disabled type="checkbox" n-checked="users">
                     User-model migrated
                 </label>
 
@@ -92,14 +92,14 @@
                 ControllerClass(es) are optional, but a view is necessary. The easiest example would be: <br>
             </p>
             <div class="bg-black-50 p-2">
-                <code class="p-l-0 bg-transparent">[<br>&nbsp;&nbsp;'/about-us' => ['/about.html'] <br>]</code>
+                <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span>'/about-us' => ['/about.html'] <br>]</code>
             </div>
             <p>
                 This Route would execute <code>Route::get('/about-us')->view('/about.html')</code>. <br>
                 If you require one or more controller-classes to be executed:
             </p>
             <div class="bg-black-50 p-2">
-                <code class="p-l-0 bg-transparent">[<br>&nbsp;&nbsp;'/about-us' => [App\Controller\About::class,
+                <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span> '/about-us' => [App\Controller\About::class,
                     '/about.html'] <br>]</code>
             </div>
             <p>
@@ -112,7 +112,7 @@
                 You need at least one controller class followed by a HTTP-method as a lower case string. Example: <br>
             </p>
             <div class="bg-black-50 p-2">
-                <code class="p-l-0 bg-transparent">[<br>&nbsp;&nbsp;'/me' => [App\Middleware\NeedsAuth::class,
+                <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span> '/me' => [App\Middleware\NeedsAuth::class,
                     App\Controller\MyUser::class,'get'] <br>]</code>
             </div>
             <p>

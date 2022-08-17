@@ -7,6 +7,11 @@
   "private": false,
   "dependencies": {
     "gaudiamus-css": "^1.2.7",
+    "purgecss": "^4.1.3",
     "sass": "^1.54.4"
+  },
+  "scripts": {
+    "scss": "node compile.js",
+    "scss:optimize": "node compile.js optimize"
   }
 }

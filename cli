@@ -10,7 +10,7 @@ require_once 'vendor/autoload.php';
 
 $app = new NeoanApp(__DIR__ . '/app', __DIR__, __DIR__);
 $app->cliPath = __DIR__;
-new Bootstrap($app);
+new Bootstrap($app, true);
 $console = new Application($app);
 $console->add(new \App\Route\CliRouteCommandList($app));
 $console->run();

@@ -5,27 +5,32 @@ namespace Config;
 
 
 use App\Route\Routes;
+use Josantonius\Session\Facades\Session;
 use Neoan\Database\Database;
 use Neoan\Errors\NotFound;
 use Neoan\NeoanApp;
 use Neoan\Render\Renderer;
 use Neoan\Response\Response;
-use Neoan\Routing\Route;
+use Neoan\Store\Store;
 use Neoan3\Apps\Stateless;
 use Neoan3\Apps\Template;
-use Neoan3\Apps\TemplateFunctions;
 
 class Bootstrap
 {
     private array $setup;
-    function __construct(NeoanApp $app)
+    private bool $runAsCli = false;
+    function __construct(NeoanApp $app, $asCli = false)
     {
+        $this->runAsCli = $asCli;
         $this->setup = require_once __DIR__ . '/setup.php';
         $this->applySetup($app);
         new Routes($app);
     }
     private function applySetup($app):void
     {
+        // Start session
+        Session::start();
+
         // RENDERING
         $rendering = $this->setup['rendering'];
 
@@ -39,9 +44,7 @@ class Bootstrap
         NotFound::setTemplate($rendering['notFoundTemplate']);
         Response::setDefaultOutput($rendering['defaultOutput']);
 
-        TemplateFunctions::registerClosure('isChecked', function($value){
-            return $value ? 'checked' : '';
-        });
+        new Templating();
 
         // Database
         $adapter = $this->setup['database']['driver']['adapter'];
@@ -50,5 +53,11 @@ class Bootstrap
 
         // Security
         Stateless::setSecret($this->setup['auth']['secret']);
+
+        if(!$this->runAsCli){
+            // things that should only happen when in cli context
+            Store::write('isLoggedIn', Session::has('userId'));
+        }
+
     }
 }

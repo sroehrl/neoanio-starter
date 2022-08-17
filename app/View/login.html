@@ -42,12 +42,20 @@
     function showError(){
         $('#login-error').classList.add('appear')
     }
-    $('#logout-btn').addEventListener('click', () => {
+    const logoutBtn = $('#logout-btn')
+    if(logoutBtn){
+        logoutBtn.addEventListener('click', () => {
 
-        axios.delete('/api/auth/logout').then(()=> {
-            sessionStorage.clear();
-            reloadPage()
+            axios.delete('/api/auth/logout').then(()=> {
+                sessionStorage.clear();
+                reloadPage()
+            })
         })
-    })
-    $('#token').innerText = "Token: " + sessionStorage.token.substring(0,7) + '...'
+    }
+    const token = $('#token');
+    if(token){
+        token.innerText = "Token: " + sessionStorage.token.substring(0,7) + '...'
+    }
+
+
 </script>

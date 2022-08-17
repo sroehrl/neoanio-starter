@@ -1,8 +1,4 @@
-<style>
-  .space-it{
-    margin-top: 400px;
-  }
-</style>
+
 <div class="container m-y-5">
   <div class="d-flex" style="justify-content: space-between">
     <a href="#cli" class="button-teal">Useful CLI Commands</a>
@@ -10,7 +6,8 @@
     <a href="#auth" class="button-teal">About Authentication</a>
     <a href="#ssr" class="button-teal">About SSR</a>
   </div>
-  <div class="card space-it" id="cli">
+  <div class="h-300px"></div>
+  <div class="card" id="cli">
     <div class="p-3 bg-black-50">Useful CLI Commands</div>
     <p class="p-x-3">
       The CLI is based on Symfony Console.
@@ -49,7 +46,8 @@
       <div class="m-x-3">Synchronizes a model with your database based on dialect (example: sqlite) and qualified name (example: App\Model\MyModel)</div>
     </div>
   </div>
-  <div class="card space-it" id="styling">
+  <div class="h-300px"></div>
+  <div class="card" id="styling">
     <div class="p-3 bg-black-50">About Styling</div>
     <p class="p-3">
       This starter project ships with <a class="text-decoration-none text-accent hover:text-teal" href="https://gaudiamus-css.github.io/glass/">glass</a>,
@@ -66,10 +64,14 @@
     </p>
     <p class="p-3">
       Then: <br>
-      <code>node compile.js</code>
+      <code>yarn scss</code> for general compilation or <code>yarn scss:optimize</code> for a purged version, including classes used in
+      the View-folder. <br><br>
+      npm version: <br>
+      <code>npm run scss</code> or <code>npm run scss:optimize</code>
     </p>
   </div>
-  <div class="card space-it" id="auth">
+  <div class="h-300px"></div>
+  <div class="card" id="auth">
     <div class="p-3 bg-black-50">About Authentication</div>
     <p class="p-3">
       In all examples in <a class="text-decoration-none text-accent hover:text-teal" href="/setup">setup</a> API-examples
@@ -103,22 +105,29 @@
       </div>
     </div>
   </div>
-  <div class="card space-it" id="ssr">
+  <div class="h-300px"></div>
+  <div class="card" id="ssr">
     <div class="p-3 bg-black-50">About SSR apps</div>
     <p class="p-3">
       As mentioned before, other then resolving visitable endpoints, calls are made as API-calls instead of e.g. making post-calls to a view.
       In order to do this as convenient as possible, this project ships with some native javascript code in the skeleton.
-      It's purpose is to enable an almost HTML-only way of sending requests to the API. Let's have a look:
+      Its purpose is to enable an almost HTML-only way of sending requests to the API. Let's have a look:
     </p>
     <div class="bg-black-50 p-3">
-      &lt;form method="get" action="Sapi/auth/me" then="myMethod"&gt; <br>
-      &nbsp;&nbsp;&lt;button type="submit"&gt;Am I logged in?&lt;/button&gt; <br>
-      &lt;/form&gt;<br><br>
-      &lt;script&gt;<br>
-      &nbsp;&nbsp;function myMethod(result){<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;console.log(result);<br>
-      &nbsp;&nbsp;}<br>
-      &lt;/script&gt;
+      <div>{{ h(form, method="get" action="Sapi/auth/me" then="myMethod") }}</div>
+      <div>{{ h(button, type="submit", 1)}}</div>
+      <div>{{ h(/form) }}</div>
+      <div>{{h(script)}}</div>
+      <div class="m-l-3">
+        function myMethod(result){
+      </div>
+      <div class="m-l-5">
+        console.log(result);
+      </div>
+      <div class="m-l-3">
+        }
+      </div>
+      <div>{{h(/script)}}</div>
     </div>
     <p class="p-3">
       What happens here? Javascript intercepts the native GET-submission and transforms it into an axios-call using your
@@ -127,4 +136,5 @@
       to react on errors.
     </p>
   </div>
+
 </div>

@@ -19,7 +19,6 @@
         </p>
         <div class="place-y-center position-relative md:d-flex d-hidden " id="menu">
             <a href="/setup" class="menu-link" play-on-hover>Setup</a>
-            <a href="/work" class="menu-link" play-on-hover>Work with it</a>
             <div class="menu-link dropdown" play-on-click>
                 <div class="title">Work with it</div>
                 <ul class="hidden">
@@ -28,11 +27,9 @@
                     <li><a href="/work#auth" class="dropdown-link" play-on-hover>Auth</a></li>
                     <li><a href="/work#ssr" class="dropdown-link" play-on-hover>SSR</a></li>
                 </ul>
-
-
             </div>
-
-            <a href="/login" class="menu-link button-teal p-x-3" play-on-hover>Login</a>
+            <a n-if="!isLoggedIn" href="/login" class="menu-link button-teal p-x-3" play-on-hover>Login</a>
+            <a n-if="isLoggedIn" href="/login" class="menu-link button-teal p-x-3" play-on-hover>Logout</a>
         </div>
         <div class="place-y-center position-relative md:d-hidden text-white font-xl">
             <button class="icon-button-white" data-toggle data-source="menu" data-target="mobile-menu"><span

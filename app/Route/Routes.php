@@ -24,7 +24,6 @@ class Routes
     function parseWebRoutes($app): void
     {
         Store::write('appTitle', 'My App');
-        Session::start();
         foreach ($this->webRoutes as $path => $options) {
 
             $view = array_pop($options);
