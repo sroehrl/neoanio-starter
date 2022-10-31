@@ -1,177 +1,179 @@
-<div class="container m-y-5">
-    <h1 class="text-accent">Getting started</h1>
-    <div class="card">
-        <div class="grid md:grid-4-8 p-2">
-            <div class="p-3">
-                <h2>Basic variables</h2>
-                <label>
-                    <input disabled type="checkbox" n-checked="hasEnv">
-                    .env -file present
-                </label>
+<article>
+    <div class="container m-y-5">
+        <h1 class="text-accent">Getting started</h1>
+        <div class="card">
+            <div class="grid md:grid-4-8 p-2">
+                <div class="p-3">
+                    <h2>Basic variables</h2>
+                    <label>
+                        <input disabled type="checkbox" n-checked="hasEnv">
+                        .env -file present
+                    </label>
 
-            </div>
-            <div class="p-3">
-                <p>
-                    First, have a look at the folder <strong>config</strong>.
-                    You will find the file <code>setup.php</code> in it.
-                </p>
-                <p>
-                    Essential runtime variables are set within this file, covering all
-                    major basics required to run this starter app. Feel free you create whatever additional variables
-                    you need here.
-                </p>
-                <p>
-                    Note that the file uses the <code>Env</code>-helper to read .env files with defaulting to a value
-                    whenever the corresponding .env-entry cannot be found. The .env file is expected to be in the app-folder, so in our case in
-                    <code>/app</code>.
-                    Please set up your .env file accordingly. You may want to copy the example.env.
-                </p>
+                </div>
+                <div class="p-3">
+                    <p>
+                        First, have a look at the folder <strong>config</strong>.
+                        You will find the file <code>setup.php</code> in it.
+                    </p>
+                    <p>
+                        Essential runtime variables are set within this file, covering all
+                        major basics required to run this starter app. Feel free you create whatever additional variables
+                        you need here.
+                    </p>
+                    <p>
+                        Note that the file uses the <code>Env</code>-helper to read .env files with defaulting to a value
+                        whenever the corresponding .env-entry cannot be found. The .env file is expected to be in the app-folder, so in our case in
+                        <code>/app</code>.
+                        Please set up your .env file accordingly. You may want to copy the example.env.
+                    </p>
 
+                </div>
             </div>
+            <hr class="m-x-2">
+            <div class="grid md:grid-4-8 p-2">
+                <div class="p-3">
+                    <h2>Database</h2>
+                    <label>
+                        <input disabled type="checkbox" n-checked="databaseConnected">
+                        Database connected
+                    </label>
+                    <p class="font-sm">{{dbAdapter}}</p>
+                </div>
+                <div class="p-3">
+                    <p>
+                        Initially, this setup works with a SQLite adapter. Everything should already work, assuming you
+                        have SQLite installed. Revisit <code>setup.php</code> to make changes.
+                    </p>
+                    <p>
+                        Own database adapters have to implement the <code>Neoan\Database\Adapter</code> interface.
+                        A MySQL adapter can be installed with:
+                    </p>
+                    <p>
+                        <code>composer require neoan.io/legacy-db-adapter</code>
+                    </p>
+
+                </div>
+            </div>
+            <hr class="m-x-2">
+            <div class="grid md:grid-4-8 p-2">
+                <div class="p-3">
+                    <h2>Migrations</h2>
+                    <label>
+                        <input disabled type="checkbox" n-checked="migrated">
+                        User-model migrated
+                    </label>
+
+
+                </div>
+                <div class="p-3">
+                    <p>
+                        This project ships with a simple user model. In order to sync the structure with your database,
+                        a migration has to be run. Whenever you create or update a model and want to do so, please run
+                    </p>
+                    <p><code>php cli migrate:model [dialect] [model]</code></p>
+                    <p>The command you want to run is</p>
+                    <p><code>php cli migrate:model {{dialect}} App\Model\User</code></p>
+                    <p>When done,
+                        <button n-link="/setup" class="button">refresh this page</button>
+                        and verify the checkbox status.
+                    </p>
+
+                </div>
+            </div>
+            <hr class="m-x-2">
+            <div class="p-5">
+                <h2>About Routes</h2>
+                <p>
+                    To simplify routing this setup uses two files:
+                </p>
+                <h5>1. Route/_webRoutes.php</h5>
+                <p>
+                    <code>[path => [...controllerClasses, view]]</code> <br>
+                    ControllerClass(es) are optional, but a view is necessary. The easiest example would be: <br>
+                </p>
+                <div class="bg-black-50 p-2">
+                    <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span>'/about-us' => ['/about.html'] <br>]</code>
+                </div>
+                <p>
+                    This Route would execute <code>Route::get('/about-us')->view('/about.html')</code>. <br>
+                    If you require one or more controller-classes to be executed:
+                </p>
+                <div class="bg-black-50 p-2">
+                    <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span> '/about-us' => [App\Controller\About::class,
+                        '/about.html'] <br>]</code>
+                </div>
+                <p>
+                    Will translate to <br><code>Route::get('/about-us',
+                    App\Controller\About::class)->view('/about.html')</code>
+                </p>
+                <h5>2. Route/_apiRoutes.php</h5>
+                <p>
+                    <code>[path => [...controllerClasses, method]]</code> <br>
+                    You need at least one controller class followed by a HTTP-method as a lower case string. Example: <br>
+                </p>
+                <div class="bg-black-50 p-2">
+                    <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span> '/me' => [App\Middleware\NeedsAuth::class,
+                        App\Controller\MyUser::class,'get'] <br>]</code>
+                </div>
+                <p>
+                    Will translate to <br><code>Route::get('/api/me', App\Middleware\NeedsAuth::class,
+                    App\Controller\MyUser::class)</code>
+                </p>
+            </div>
+
         </div>
-        <hr class="m-x-2">
-        <div class="grid md:grid-4-8 p-2">
-            <div class="p-3">
-                <h2>Database</h2>
-                <label>
-                    <input disabled type="checkbox" n-checked="databaseConnected">
-                    Database connected
-                </label>
-                <p class="font-sm">{{dbAdapter}}</p>
-            </div>
-            <div class="p-3">
-                <p>
-                    Initially, this setup works with a SQLite adapter. Everything should already work, assuming you
-                    have SQLite installed. Revisit <code>setup.php</code> to make changes.
-                </p>
-                <p>
-                    Own database adapters have to implement the <code>Neoan\Database\Adapter</code> interface.
-                    A MySQL adapter can be installed with:
-                </p>
-                <p>
-                    <code>composer require neoan.io/legacy-db-adapter</code>
-                </p>
-
-            </div>
-        </div>
-        <hr class="m-x-2">
-        <div class="grid md:grid-4-8 p-2">
-            <div class="p-3">
-                <h2>Migrations</h2>
-                <label>
-                    <input disabled type="checkbox" n-checked="migrated">
-                    User-model migrated
-                </label>
-
-
-            </div>
-            <div class="p-3">
-                <p>
-                    This project ships with a simple user model. In order to sync the structure with your database,
-                    a migration has to be run. Whenever you create or update a model and want to do so, please run
-                </p>
-                <p><code>php cli migrate:model [dialect] [model]</code></p>
-                <p>The command you want to run is</p>
-                <p><code>php cli migrate:model {{dialect}} App\Model\User</code></p>
-                <p>When done,
-                    <button n-link="/setup" class="button">refresh this page</button>
-                    and verify the checkbox status.
-                </p>
-
-            </div>
-        </div>
-        <hr class="m-x-2">
-        <div class="p-5">
-            <h2>About Routes</h2>
-            <p>
-                To simplify routing this setup uses two files:
-            </p>
-            <h5>1. Route/_webRoutes.php</h5>
-            <p>
-                <code>[path => [...controllerClasses, view]]</code> <br>
-                ControllerClass(es) are optional, but a view is necessary. The easiest example would be: <br>
-            </p>
-            <div class="bg-black-50 p-2">
-                <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span>'/about-us' => ['/about.html'] <br>]</code>
-            </div>
-            <p>
-                This Route would execute <code>Route::get('/about-us')->view('/about.html')</code>. <br>
-                If you require one or more controller-classes to be executed:
-            </p>
-            <div class="bg-black-50 p-2">
-                <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span> '/about-us' => [App\Controller\About::class,
-                    '/about.html'] <br>]</code>
-            </div>
-            <p>
-                Will translate to <br><code>Route::get('/about-us',
-                App\Controller\About::class)->view('/about.html')</code>
-            </p>
-            <h5>2. Route/_apiRoutes.php</h5>
-            <p>
-                <code>[path => [...controllerClasses, method]]</code> <br>
-                You need at least one controller class followed by a HTTP-method as a lower case string. Example: <br>
-            </p>
-            <div class="bg-black-50 p-2">
-                <code class="p-l-0 bg-transparent">[<br><span class="m-l-2"></span> '/me' => [App\Middleware\NeedsAuth::class,
-                    App\Controller\MyUser::class,'get'] <br>]</code>
-            </div>
-            <p>
-                Will translate to <br><code>Route::get('/api/me', App\Middleware\NeedsAuth::class,
-                App\Controller\MyUser::class)</code>
-            </p>
-        </div>
-
-    </div>
-    <h1>Let's try it out</h1>
-    <div class="card p-5">
-        <h2>1. Register a user</h2>
-        <form class="grid md:grid-5-5-2" method="post" action="api/auth/register" then="loggedIn">
-            <input class="md:m-r-5" type="text" name="userName" placeholder="username">
-            <input class="md:m-r-3 m-t-3 md:m-t-0" type="password" minlength="8" name="password" placeholder="password">
-            <button class="button-accent m-t-3 md:m-t-0" type="submit">register</button>
-        </form>
-        <div id="registration-success" class="p-2 bg-success-50 m-5 hidden">Registration successful</div>
-        <hr>
-        <h2>2. Log in</h2>
-        <div class="grid md:grid-6-6">
-            <form class="grid" method="post" action="api/auth/login" then="showLogin">
-                <input class="m-b-3 m-r-2" type="text" name="userName" placeholder="username">
-                <input class="m-b-3 m-r-2" type="password" minlength="8" name="password" placeholder="password">
-                <button class="button-accent place-x-end" type="submit">sign in</button>
+        <h1>Let's try it out</h1>
+        <div class="card p-5">
+            <h2>1. Register a user</h2>
+            <form class="grid md:grid-5-5-2" method="post" action="api/auth/register" then="loggedIn">
+                <input class="md:m-r-5" type="text" name="userName" placeholder="username">
+                <input class="md:m-r-3 m-t-3 md:m-t-0" type="password" minlength="8" name="password" placeholder="password">
+                <button class="button-accent m-t-3 md:m-t-0" type="submit">register</button>
             </form>
-            <textarea disabled id="login-result" class="m-t-4 m-r-2 md:m-r-0 md:m-t-0"></textarea>
+            <div id="registration-success" class="p-2 bg-success-50 m-5 hidden">Registration successful</div>
+            <hr>
+            <h2>2. Log in</h2>
+            <div class="grid md:grid-6-6">
+                <form class="grid" method="post" action="api/auth/login" then="showLogin">
+                    <input class="m-b-3 m-r-2" type="text" name="userName" placeholder="username">
+                    <input class="m-b-3 m-r-2" type="password" minlength="8" name="password" placeholder="password">
+                    <button class="button-accent place-x-end" type="submit">sign in</button>
+                </form>
+                <textarea disabled id="login-result" class="m-t-4 m-r-2 md:m-r-0 md:m-t-0"></textarea>
+            </div>
+            <div id="login-success" class="p-2 bg-success-50 m-5 hidden">Login successful</div>
+            <hr>
+            <h2>3. Try to reach an endpoint requiring authentication</h2>
+            <form action="/api/auth/me" method="get" then="authenticated">
+                <button class="button-accent font-md" type="submit">GET: api/auth/me</button>
+                <button class="button-warning font-md" type="button" id="logout">Logout</button>
+            </form>
+            <div id="auth-success" class="p-2 bg-success-50 m-5 hidden">Your token was accepted</div>
         </div>
-        <div id="login-success" class="p-2 bg-success-50 m-5 hidden">Login successful</div>
-        <hr>
-        <h2>3. Try to reach an endpoint requiring authentication</h2>
-        <form action="/api/auth/me" method="get" then="authenticated">
-            <button class="button-accent font-md" type="submit">GET: api/auth/me</button>
-            <button class="button-warning font-md" type="button" id="logout">Logout</button>
-        </form>
-        <div id="auth-success" class="p-2 bg-success-50 m-5 hidden">Your token was accepted</div>
     </div>
-</div>
 
-<script>
+    <script>
 
-    function showLogin(res){
-        sessionStorage.setItem('token', res.token);
-        $('#login-result').innerHTML = JSON.stringify(res)
-        $('#login-success').classList.add('appear')
-    }
-    function loggedIn(){
-        $('#registration-success').classList.add('appear')
-    }
-    function authenticated(res) {
-        const successContainer = $('#auth-success');
-        successContainer.innerHTML += `. User: id: ${res.auth.id} scope: ${res.auth.scope.toString()}`
-        successContainer.classList.add('appear')
-    }
-    $('#logout').addEventListener('click', ev => {
-        sessionStorage.clear();
-        axios.delete('/api/auth/logout');
-        $('.appear').forEach(ele => {
-            ele.classList.remove('appear')
+        function showLogin(res){
+            sessionStorage.setItem('token', res.token);
+            $('#login-result').innerHTML = JSON.stringify(res)
+            $('#login-success').classList.add('appear')
+        }
+        function loggedIn(){
+            $('#registration-success').classList.add('appear')
+        }
+        function authenticated(res) {
+            const successContainer = $('#auth-success');
+            successContainer.innerHTML += `. User: id: ${res.auth.id} scope: ${res.auth.scope.toString()}`
+            successContainer.classList.add('appear')
+        }
+        $('#logout').addEventListener('click', ev => {
+            sessionStorage.clear();
+            axios.delete('/api/auth/logout');
+            $('.appear').forEach(ele => {
+                ele.classList.remove('appear')
+            })
         })
-    })
-</script>
+    </script>
+</article>

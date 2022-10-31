@@ -25,7 +25,6 @@ class Routes
     {
         Store::write('appTitle', 'My App');
         foreach ($this->webRoutes as $path => $options) {
-
             $view = array_pop($options);
             Route::get($path, ...$options)->view($view)->inject([
                 'appPath'=>$app->appPath,
@@ -34,6 +33,7 @@ class Routes
                 'userId'=>Session::get('userId')
             ]);
         }
+
     }
     function parseApiRoutes($app): void
     {

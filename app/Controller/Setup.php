@@ -5,17 +5,16 @@ namespace App\Controller;
 use App\Model\User;
 use Neoan\Database\Database;
 use Neoan\NeoanApp;
-use Neoan\Routing\Routable;
+use Neoan\Provider\Injections;
+use Neoan\Routing\Interfaces\Routable;
 use Neoan\Routing\Route;
 
 class Setup implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(NeoanApp $app): array
     {
-        [
-            'appPath' => $path
-        ] = $provided;
-        $setup = require dirname($path) . '/config/setup.php';
+
+        $setup = require dirname($app->appPath) . '/config/setup.php';
         try{
             $time = Database::raw("SELECT date('now') as time")[0]['time'];
         } catch (\Exception $e) {
