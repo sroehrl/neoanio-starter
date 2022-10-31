@@ -6,11 +6,11 @@ use App\Model\User;
 use Neoan\Errors\Unauthorized;
 use Neoan\Request\Request;
 use Neoan\Response\Response;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 
 class Register implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(): array
     {
         try{
             $newUser = new User(Request::getInputs());

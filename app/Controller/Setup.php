@@ -26,7 +26,7 @@ class Setup implements Routable
             $users = false;
         }
         return [
-            'hasEnv' => file_exists(dirname(__DIR__) . '/.env'),
+            'hasEnv' => file_exists($app->cliPath . '/.env'),
             'dbAdapter' => $setup['database']['driver']['adapter'],
             'dialect' => $setup['database']['driver']['credentials'],
             'databaseConnected' => $time,

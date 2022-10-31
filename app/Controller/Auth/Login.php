@@ -5,14 +5,13 @@ namespace App\Controller\Auth;
 use App\Model\User;
 use Josantonius\Session\Facades\Session;
 use Neoan\Errors\Unauthorized;
-use Neoan\Helper\Env;
 use Neoan\Request\Request;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 use Neoan3\Apps\Stateless;
 
 class Login implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(): array
     {
         if(Request::getInput('password')){
 

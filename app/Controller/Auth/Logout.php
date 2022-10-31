@@ -3,11 +3,11 @@
 namespace App\Controller\Auth;
 
 use Josantonius\Session\Facades\Session;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 
 class Logout implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(): array
     {
         Session::clear();
         return [];
