@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "neoan.io/core": "0.1.0-beta",
+    "neoan.io/core": "0.1.0",
     "josantonius/session": "^2.0",
     "neoan3-apps/stateless": "^2.0",
     "neoan3-apps/template": "2.0.2"

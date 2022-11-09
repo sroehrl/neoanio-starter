@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a096fcb2145ee2f37da5dcff32d07c0",
+    "content-hash": "89112b0f0c27553c3d4803d7d4125bf7",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -338,16 +338,16 @@
         },
         {
             "name": "composer/pcre",
-            "version": "3.0.0",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/pcre.git",
-                "reference": "e300eb6c535192decd27a85bc72a9290f0d6b3bd"
+                "reference": "4482b6409ca6bfc2af043a5711cd21ac3e7a8dfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/pcre/zipball/e300eb6c535192decd27a85bc72a9290f0d6b3bd",
-                "reference": "e300eb6c535192decd27a85bc72a9290f0d6b3bd",
+                "url": "https://api.github.com/repos/composer/pcre/zipball/4482b6409ca6bfc2af043a5711cd21ac3e7a8dfb",
+                "reference": "4482b6409ca6bfc2af043a5711cd21ac3e7a8dfb",
                 "shasum": ""
             },
             "require": {
@@ -389,7 +389,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/pcre/issues",
-                "source": "https://github.com/composer/pcre/tree/3.0.0"
+                "source": "https://github.com/composer/pcre/tree/3.0.2"
             },
             "funding": [
                 {
@@ -405,7 +405,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-25T20:21:48+00:00"
+            "time": "2022-11-03T20:24:16+00:00"
         },
         {
             "name": "composer/semver",
@@ -888,16 +888,16 @@
         },
         {
             "name": "neoan.io/core",
-            "version": "v0.1.0-beta",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sroehrl/neoan.io-lenkrad-core.git",
-                "reference": "f66d9c0249cdf33bd2cef81a5770038b4f235bae"
+                "reference": "5609da71724cb7d554cfd33aedd51f033cc4cee2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/f66d9c0249cdf33bd2cef81a5770038b4f235bae",
-                "reference": "f66d9c0249cdf33bd2cef81a5770038b4f235bae",
+                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/5609da71724cb7d554cfd33aedd51f033cc4cee2",
+                "reference": "5609da71724cb7d554cfd33aedd51f033cc4cee2",
                 "shasum": ""
             },
             "require": {
@@ -934,9 +934,9 @@
             "description": "Neoan.io Lenkrad Framework",
             "support": {
                 "issues": "https://github.com/sroehrl/neoan.io-lenkrad-core/issues",
-                "source": "https://github.com/sroehrl/neoan.io-lenkrad-core/tree/v0.1.0-beta"
+                "source": "https://github.com/sroehrl/neoan.io-lenkrad-core/tree/v0.1.0"
             },
-            "time": "2022-10-31T17:30:00+00:00"
+            "time": "2022-11-09T03:44:06+00:00"
         },
         {
             "name": "neoan.io/legacy-db-adapter",
@@ -2679,9 +2679,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "neoan.io/core": 10
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
